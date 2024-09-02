@@ -99,6 +99,10 @@ class BinOpAst():
         Reduce additive identities
         x + 0 = x
         """
+
+        # ;;> You want to recur on both the left and right if you are an operator and you want to do that first
+        # ;;> That allows you to "pull" all the reductions up to the top. Same issue in mult
+        
         # + 0 x returns x
         # needs to walk through the tree recursively
         # base case: we are at leaf node
@@ -222,6 +226,9 @@ class BinOpAst():
         self.mult_by_zero()
         # self.constant_fold()
 
+
+# ;;> One nice thing about a normal test bench is that it gives you a condensed final output X/Y tests passed
+# ;;> For this, I have to manually look through each result, or wrap some other parsing script around it
 def testbench():
     testbench = osjoin('testbench')
     for test_op in os.listdir(testbench):
